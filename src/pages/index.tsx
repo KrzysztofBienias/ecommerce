@@ -4,6 +4,8 @@ import Image from 'next/image';
 import Header from '../components/header';
 import MobileImage from '../images/mobile-hero.jpg';
 import DesktopImage from '../images/desktop-hero.jpg';
+import HomeContent from '../components/homeContent';
+
 interface ProductType {
     products: {
         id: number;
@@ -41,6 +43,7 @@ const Home: NextPage<ProductType> = ({ products }) => {
                     />
                 </div>
             </main>
+            <HomeContent />
         </div>
     );
 };
