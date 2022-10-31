@@ -4,6 +4,7 @@ import Header from '../components/header';
 import HomeContent from '../components/homeContent';
 import HeroImage from '../components/heroImage';
 import ProductsPreview from '../components/productsPreview';
+import Footer from '../components/footer';
 
 interface ProductType {
     products: {
@@ -27,6 +28,7 @@ const Home: NextPage<ProductType> = ({ products }) => {
                 <HomeContent />
                 <ProductsPreview products={products} />
             </main>
+            <Footer />
         </div>
     );
 };
