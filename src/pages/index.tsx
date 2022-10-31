@@ -1,10 +1,9 @@
-import type { NextPage } from 'next';
+import type { GetServerSideProps, NextPage } from 'next';
 import Head from 'next/head';
-import Image from 'next/image';
 import Header from '../components/header';
-import MobileImage from '../images/mobile-hero.jpg';
-import DesktopImage from '../images/desktop-hero.jpg';
 import HomeContent from '../components/homeContent';
+import HeroImage from '../components/heroImage';
+import ProductsPreview from '../components/productsPreview';
 
 interface ProductType {
     products: {
@@ -24,31 +23,15 @@ const Home: NextPage<ProductType> = ({ products }) => {
             </Head>
             <Header />
             <main>
-                <div className="hidden md:block">
-                    <Image
-                        src={MobileImage}
-                        height={1423}
-                        width={1917}
-                        objectFit="contain"
-                        alt="Mobile hero image of the collection"
-                    />
-                </div>
-                <div className="md:hidden">
-                    <Image
-                        src={DesktopImage}
-                        height={2400}
-                        width={1920}
-                        objectFit="contain"
-                        alt="Desktop hero image of the collection"
-                    />
-                </div>
+                <HeroImage />
+                <HomeContent />
+                <ProductsPreview products={products} />
             </main>
-            <HomeContent />
         </div>
     );
 };
 
-export async function getServerSideProps() {
+export const getStaticProps: GetServerSideProps = async () => {
     const products = await fetch('https://my-ecommerce-api-modern.herokuapp.com/items').then((res) => res.json());
 
     return {
@@ -56,6 +39,6 @@ export async function getServerSideProps() {
             products,
         },
     };
-}
+};
 
 export default Home;
