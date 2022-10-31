@@ -1,8 +1,10 @@
 import React from 'react';
 import { useRouter } from 'next/router';
+import { signIn, signOut, useSession } from 'next-auth/react';
 
 const Header = () => {
     const router = useRouter();
+    const { data: session } = useSession();
 
     return (
         <header>
@@ -14,7 +16,12 @@ const Header = () => {
                     Home
                 </p>
                 <div className="text-center min-[360px]:flex ">
-                    <p className="cursor-pointer px-2 py-2 hover:italic sm:px-4 sm:py-4 lg:px-6 lg:py-6">Sign in</p>
+                    <p
+                        className="cursor-pointer px-2 py-2 hover:italic sm:px-4 sm:py-4 lg:px-6 lg:py-6"
+                        onClick={() => (session ? signOut() : signIn())}
+                    >
+                        {session ? 'Sign out' : 'Sign in'}
+                    </p>
                     <p
                         onClick={() => router.push('/profile')}
                         className="cursor-pointer px-2 py-2 hover:italic sm:px-4 sm:py-4 lg:px-6 lg:py-6"
