@@ -1,10 +1,7 @@
 import type { GetServerSideProps, NextPage } from 'next';
-import Head from 'next/head';
-import Header from '../components/header';
-import HomeContent from '../components/homeContent';
-import HeroImage from '../components/heroImage';
-import ProductsPreview from '../components/productsPreview';
 import Footer from '../components/footer';
+import Header from '../components/header';
+import ProductFeed from '../components/productFeed';
 
 interface ProductType {
     products: {
@@ -16,18 +13,11 @@ interface ProductType {
     }[];
 }
 
-const Home: NextPage<ProductType> = ({ products }) => {
+const Products: NextPage<ProductType> = ({ products }) => {
     return (
         <div className="mx-auto max-w-screen-2xl font-montserrat">
-            <Head>
-                <title>THE ABCDE</title>
-            </Head>
             <Header />
-            <main>
-                <HeroImage />
-                <HomeContent />
-                <ProductsPreview products={products} />
-            </main>
+            <ProductFeed products={products} />
             <Footer />
         </div>
     );
@@ -43,4 +33,4 @@ export const getStaticProps: GetServerSideProps = async () => {
     };
 };
 
-export default Home;
+export default Products;

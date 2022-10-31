@@ -18,8 +18,8 @@ const Product = ({ product }: ProductType) => {
                     className="transition duration-150 ease-out hover:scale-125"
                     src={product.image}
                     alt={product.title}
-                    width={400}
-                    height={400}
+                    width={800}
+                    height={800}
                 />
             </div>
             <div className="flex justify-between px-2">
