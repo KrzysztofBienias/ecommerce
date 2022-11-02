@@ -15,7 +15,7 @@ interface TypeProps {
 }
 
 const ProductsCatagory = ({ children }: TypeProps) => (
-    <h5 className="py-20 pr-2 text-4xl font-bold sm:text-6xl md:pr-4 md:text-7xl xl:text-8xl 2xl:pb-4 2xl:pr-0 2xl:text-9xl">
+    <h5 className="pt-20 pb-10 pl-2 text-4xl font-bold sm:text-6xl md:pr-4 md:text-7xl xl:text-8xl 2xl:pb-4 2xl:pr-0 2xl:text-9xl">
         {children}
     </h5>
 );
