@@ -1,4 +1,6 @@
 import Image from 'next/image';
+import { useDispatch } from 'react-redux';
+import { addToBasket } from '../redux/slices/basksetSlice';
 
 interface ProductType {
     product: {
@@ -11,9 +13,15 @@ interface ProductType {
 }
 
 const Product = ({ product }: ProductType) => {
+    const dispatch = useDispatch();
+
+    const addProductToBasket = () => {
+        dispatch(addToBasket(product));
+    };
+
     return (
         <div className="pb-6 md:pb-0" key={product.id}>
-            <div className="cursor-pointer overflow-hidden">
+            <div onClick={addProductToBasket} className="cursor-pointer overflow-hidden">
                 <Image
                     className="transition duration-150 ease-out hover:scale-125"
                     src={product.image}

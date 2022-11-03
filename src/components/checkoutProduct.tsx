@@ -1,20 +1,45 @@
 import React from 'react';
 import Image from 'next/image';
-import img from '../images/content1.jpg';
+import { useDispatch } from 'react-redux';
+import { addToBasket, removeFromBasket } from '../redux/slices/basksetSlice';
 
-const CheckoutProduct = () => {
+interface ItemType {
+    item: {
+        id: number;
+        title: string;
+        price: number;
+        category: string;
+        image: string;
+    };
+}
+
+const CheckoutProduct = ({ item }: ItemType) => {
+    const dispatch = useDispatch();
+
+    const addItemToBasket = () => {
+        dispatch(addToBasket(item));
+    };
+
+    const removeItemFromBasket = () => {
+        dispatch(removeFromBasket(item.id));
+    };
+
     return (
         <div className="my-4 flex">
             <div className="h-[100px] w-[100px] md:h-[150px] md:w-[150px]">
-                <Image src={img} width={150} height={150} alt="" />
+                <Image src={item.image} width={150} height={150} alt="" />
             </div>
             <div className="flex flex-1 flex-col justify-around pl-2">
-                <p>title</p>
-                <p>$100</p>
+                <p>{item.title}</p>
+                <p>${item.price}</p>
             </div>
             <div className="flex flex-col justify-around pr-2">
-                <button className="p-2 hover:italic">add</button>
-                <button className="p-2 hover:italic">remove</button>
+                <button onClick={addItemToBasket} className="p-2 hover:italic">
+                    add
+                </button>
+                <button onClick={removeItemFromBasket} className="p-2 hover:italic">
+                    remove
+                </button>
             </div>
         </div>
     );

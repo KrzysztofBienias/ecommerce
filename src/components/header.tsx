@@ -1,10 +1,13 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import { signIn, signOut, useSession } from 'next-auth/react';
+import { useSelector } from 'react-redux';
+import { selectItems } from '../redux/slices/basksetSlice';
 
 const Header = () => {
     const router = useRouter();
     const { data: session } = useSession();
+    const items = useSelector(selectItems);
 
     return (
         <header>
@@ -39,7 +42,7 @@ const Header = () => {
                     onClick={() => router.push('/cart')}
                     className="cursor-pointer px-2 py-2 hover:italic sm:px-4 sm:py-4 lg:px-6 lg:py-6"
                 >
-                    Cart(10)
+                    Cart({items.length})
                 </p>
             </div>
             <div className="mx-auto my-5 max-w-fit">
