@@ -6,7 +6,7 @@ const nextConfig = {
 
 module.exports = {
     images: {
-        domains: ['imgur.com', 'mir-s3-cdn-cf.behance.net'],
+        domains: ['imgur.com', 'mir-s3-cdn-cf.behance.net', 'lh3.googleusercontent.com'],
     },
     ...nextConfig,
 };
