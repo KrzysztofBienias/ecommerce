@@ -23,22 +23,6 @@ const Order = () => {
                     <Image src={image} alt="" width={150} height={150} objectFit="contain" key={index} />
                 ))}
             </div>
-
-            {/* <div className="sm-10 p-8">
-                <div id="imgs" className="flex space-x-6 overflow-x-auto">
-                    {imgs.map((image, index) => (
-                        <Image
-                            src={image}
-                            width={150}
-                            height={150}
-                            alt=""
-                            key={index}
-                            className="h-20 sm:h-32"
-                            objectFit="contain"
-                        />
-                    ))}
-                </div>
-            </div> */}
         </div>
     );
 };
