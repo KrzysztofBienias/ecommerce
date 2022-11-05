@@ -1,3 +1,5 @@
+import type { NextApiRequest, NextApiResponse } from 'next';
+
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 interface Type {
@@ -11,8 +13,7 @@ interface Type {
     email: string;
 }
 
-// eslint-disable-next-line import/no-anonymous-default-export
-export default async (req: any, res: any) => {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     const { items, email }: Type = req.body;
 
     const transformedItems = items.map((item) => ({
@@ -65,4 +66,4 @@ export default async (req: any, res: any) => {
     });
 
     res.status(200).json({ id: session.id });
-};
+}
