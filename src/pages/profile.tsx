@@ -1,11 +1,24 @@
-import type { NextPage } from 'next';
+import type { NextPage, GetServerSideProps } from 'next';
 import Footer from '../components/footer';
 import Header from '../components/header';
-import { useSession } from 'next-auth/react';
+import { getSession, useSession } from 'next-auth/react';
 import Image from 'next/image';
 import Order from '../components/order';
+import db from './../../firebase';
+import moment from 'moment';
 
-const Profile: NextPage = () => {
+interface OrderType {
+    orders: {
+        id: string;
+        amount: number;
+        amountShipping: number;
+        images: string[];
+        items: any;
+        timestamp: number;
+    }[];
+}
+
+const Profile: NextPage<OrderType> = ({ orders }) => {
     const { data: session } = useSession();
 
     return (
@@ -26,8 +39,16 @@ const Profile: NextPage = () => {
                             <p>{session.user?.name}</p>
                             <p>{session.user?.email}</p>
                         </div>
-                        <div>
-                            <Order />
+                        <div className="max-w-[876px] lg:mx-14 lg:flex-1">
+                            {orders.map((order, index) => (
+                                <Order
+                                    amount={order.amount}
+                                    images={order.images}
+                                    items={order.items}
+                                    timestamp={order.timestamp}
+                                    key={index}
+                                />
+                            ))}
                         </div>
                     </div>
                 )}
@@ -39,3 +60,42 @@ const Profile: NextPage = () => {
 };
 
 export default Profile;
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+    const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+    const session = await getSession(context);
+
+    if (!session) {
+        return {
+            props: {},
+        };
+    }
+
+    const stripeOrders = await db
+        .collection('users')
+        .doc(session.user?.email!)
+        .collection('orders')
+        .orderBy('timestamp', 'desc')
+        .get();
+
+    const orders = await Promise.all(
+        stripeOrders.docs.map(async (order) => ({
+            id: order.id,
+            amount: order.data().amount,
+            amountShipping: order.data().amount_shipping,
+            images: order.data().images,
+            timestamp: moment(order.data().timestamp.toDate()).unix(),
+            items: (
+                await stripe.checkout.sessions.listLineItems(order.id, {
+                    limit: 100,
+                })
+            ).data,
+        }))
+    );
+
+    return {
+        props: {
+            orders,
+        },
+    };
+};
