@@ -30,8 +30,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     const session = await stripe.checkout.sessions.create({
         payment_method_types: ['card'],
-        shipping_address_collection: { allowed_countries: ['US', 'GB', 'CA'] },
-        line_items: transformedItems,
+        shipping_address_collection: {
+            allowed_countries: ['GB', 'US', 'CA'],
+        },
         shipping_options: [
             {
                 shipping_rate_data: {
@@ -56,6 +57,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 },
             },
         ],
+        line_items: transformedItems,
         mode: 'payment',
         success_url: `${process.env.HOST}/success`,
         cancel_url: `${process.env.HOST}/cart`,
