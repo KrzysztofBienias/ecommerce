@@ -1,26 +1,33 @@
 import Image from 'next/image';
-import img from '../images/content1.jpg';
+import moment from 'moment';
 
-const images = [img, img, img, img, img, img];
+interface OrderT {
+    amount: number;
+    images: string[];
+    items: any;
+    timestamp: number;
+}
 
-const Order = () => {
+const Order: React.FC<OrderT> = ({ amount, images, items, timestamp }) => {
     return (
         <div className="my-4 rounded-md border">
             <div className="flex items-center space-x-5 bg-gray-100 p-5 text-sm text-gray-600 sm:space-x-10">
                 <div>
                     <p className="text-xs font-bold">ORDER PLACED</p>
-                    <p>04 Nov 2022</p>
+                    <p>{moment.unix(timestamp).format('DD MMM YYYY')}</p>
                 </div>
                 <div className="self-start">
                     <p className="text-xs font-bold">TOTAL</p>
-                    <p>$885.59</p>
+                    <p>${amount}</p>
                 </div>
-                <p className="flex-1 self-start whitespace-nowrap text-right text-sm sm:text-xl">8 items</p>
+                <p className="flex-1 self-start whitespace-nowrap text-right text-sm sm:text-xl">{items.length} items</p>{' '}
             </div>
 
-            <div className="overflow-x-auto overflow-y-hidden whitespace-nowrap p-4 sm:p-10">
+            <div className="flex overflow-x-auto overflow-y-hidden whitespace-nowrap p-4 sm:p-10">
                 {images.map((image, index) => (
-                    <Image src={image} alt="" width={150} height={150} objectFit="contain" key={index} />
+                    <div className="mx-1 h-[150px] w-[150px]" key={index}>
+                        <Image src={image} alt="" width={150} height={150} key={index} />
+                    </div>
                 ))}
             </div>
         </div>
