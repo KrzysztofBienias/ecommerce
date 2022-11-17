@@ -40,6 +40,7 @@ const Cart = () => {
                     <div className="p-4 text-right sm:p-0 sm:py-4">
                         <p className="text-xl font-bold lg:text-2xl xl:text-4xl">Total price: ${total}</p>
                         <p className="lg:text-lg xl:text-2xl">items: {items.length}</p>
+                        <p>(max 5 items)</p>
                         <button
                             role="link"
                             disabled={!session}
