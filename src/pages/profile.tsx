@@ -6,16 +6,10 @@ import Image from 'next/image';
 import Order from '../components/order';
 import db from '../../firebase';
 import moment from 'moment';
+import type { OrderT } from '../types';
 
-interface ProfileT {
-    orders: {
-        amount: number;
-        amountShipping: number;
-        id: string;
-        images: string[];
-        items: any;
-        timestamp: number;
-    }[];
+interface ProfileI {
+    orders: OrderT[];
 }
 
 const InfoText = ({ children }: { children: React.ReactNode }) => (
@@ -24,7 +18,7 @@ const InfoText = ({ children }: { children: React.ReactNode }) => (
     </div>
 );
 
-const Profile: NextPage<ProfileT> = ({ orders }) => {
+const Profile: NextPage<ProfileI> = ({ orders }) => {
     const { data: session } = useSession();
 
     return (

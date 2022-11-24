@@ -2,18 +2,13 @@ import type { GetServerSideProps, NextPage } from 'next';
 import Footer from '../components/footer';
 import Header from '../components/header';
 import ProductFeed from '../components/productFeed';
+import type { ProductT } from '../types';
 
-interface ProductType {
-    products: {
-        id: number;
-        title: string;
-        price: number;
-        category: string;
-        image: string;
-    }[];
+interface ProductsI {
+    products: ProductT[];
 }
 
-const Products: NextPage<ProductType> = ({ products }) => {
+const Products: NextPage<ProductsI> = ({ products }) => {
     return (
         <div className="mx-auto max-w-screen-2xl font-montserrat">
             <Header />

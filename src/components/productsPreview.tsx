@@ -1,16 +1,11 @@
 import Product from './product';
+import type { ProductT } from '../types';
 
-interface ProductType {
-    products: {
-        id: number;
-        title: string;
-        price: number;
-        category: string;
-        image: string;
-    }[];
+interface ProductsPreviewI {
+    products: ProductT[];
 }
 
-const ProductsPreview = ({ products }: ProductType) => {
+const ProductsPreview: React.FC<ProductsPreviewI> = ({ products }) => {
     return (
         <div className="grid grid-cols-1 xs:grid-cols-2 xs:grid-rows-2 xs:gap-2 md:grid-cols-4 md:grid-rows-none">
             {products.slice(0, 4).map((product) => (

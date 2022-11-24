@@ -1,18 +1,13 @@
 import Image from 'next/image';
 import { useDispatch } from 'react-redux';
 import { addToBasket } from '../redux/slices/basksetSlice';
+import type { ProductT } from '../types';
 
-interface ProductType {
-    product: {
-        id: number;
-        title: string;
-        price: number;
-        category: string;
-        image: string;
-    };
+interface ProductI {
+    product: ProductT;
 }
 
-const Product = ({ product }: ProductType) => {
+const Product = ({ product }: ProductI) => {
     const dispatch = useDispatch();
 
     const addProductToBasket = () => {

@@ -2,18 +2,13 @@ import React from 'react';
 import Image from 'next/image';
 import { useDispatch } from 'react-redux';
 import { addToBasket, removeFromBasket } from '../redux/slices/basksetSlice';
+import type { ProductT } from '../types';
 
-interface ItemType {
-    item: {
-        id: number;
-        title: string;
-        price: number;
-        category: string;
-        image: string;
-    };
+interface CheckoutProductI {
+    item: ProductT;
 }
 
-const CheckoutProduct = ({ item }: ItemType) => {
+const CheckoutProduct: React.FC<CheckoutProductI> = ({ item }) => {
     const dispatch = useDispatch();
 
     const addItemToBasket = () => {

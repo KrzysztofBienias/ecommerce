@@ -5,18 +5,13 @@ import HomeContent from '../components/homeContent';
 import HeroImage from '../components/heroImage';
 import ProductsPreview from '../components/productsPreview';
 import Footer from '../components/footer';
+import type { ProductT } from '../types';
 
-interface ProductType {
-    products: {
-        id: number;
-        title: string;
-        price: number;
-        category: string;
-        image: string;
-    }[];
+interface HomeI {
+    products: ProductT[];
 }
 
-const Home: NextPage<ProductType> = ({ products }) => {
+const Home: NextPage<HomeI> = ({ products }) => {
     return (
         <div className="mx-auto max-w-screen-2xl font-montserrat">
             <Head>

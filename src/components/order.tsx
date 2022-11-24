@@ -1,14 +1,14 @@
 import Image from 'next/image';
 import moment from 'moment';
 
-interface OrderT {
+interface OrderI {
     amount: number;
     images: string[];
     items: any;
     timestamp: number;
 }
 
-const Order: React.FC<OrderT> = ({ amount, images, items, timestamp }) => {
+const Order: React.FC<OrderI> = ({ amount, images, items, timestamp }) => {
     return (
         <div className="my-4 rounded-md border">
             <div className="flex items-center space-x-5 bg-gray-100 p-5 text-sm text-gray-600 sm:space-x-10">
