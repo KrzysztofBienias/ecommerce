@@ -1,5 +1,4 @@
 import type { GetServerSideProps, NextPage } from 'next';
-import Head from 'next/head';
 import Header from '../components/header';
 import HomeContent from '../components/homeContent';
 import HeroImage from '../components/heroImage';
@@ -14,9 +13,6 @@ interface HomeI {
 const Home: NextPage<HomeI> = ({ products }) => {
     return (
         <div className="mx-auto max-w-screen-2xl font-montserrat">
-            <Head>
-                <title>THE ABCDE</title>
-            </Head>
             <Header />
             <main>
                 <HeroImage />
