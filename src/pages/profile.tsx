@@ -35,7 +35,7 @@ const Profile: NextPage<ProfileI> = ({ orders }) => {
                             <p>{session.user?.name}</p>
                             <p>{session.user?.email}</p>
                         </div>
-                        <div>
+                        <div className="max-w-5xl flex-1">
                             {orders ? (
                                 orders.map((order, index) => (
                                     <Order
