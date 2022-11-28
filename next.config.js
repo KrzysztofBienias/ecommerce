@@ -5,6 +5,10 @@ const nextConfig = {
 };
 
 module.exports = {
+    i18n: {
+        locales: ['en'],
+        defaultLocale: 'en',
+    },
     images: {
         domains: ['imgur.com', 'mir-s3-cdn-cf.behance.net', 'lh3.googleusercontent.com'],
     },

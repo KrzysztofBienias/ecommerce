@@ -1,20 +1,15 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
+import type { ProductT } from '../../types';
 
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
-interface Type {
-    items: {
-        id: number;
-        title: string;
-        price: number;
-        category: string;
-        image: string;
-    }[];
+interface ReqI {
+    items: ProductT[];
     email: string;
 }
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-    const { items, email }: Type = req.body;
+    const { items, email }: ReqI = req.body;
 
     const transformedItems = items.map((item) => ({
         quantity: 1,
