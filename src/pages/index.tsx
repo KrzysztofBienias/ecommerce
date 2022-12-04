@@ -5,6 +5,7 @@ import HeroImage from '../components/heroImage';
 import ProductsPreview from '../components/productsPreview';
 import Footer from '../components/footer';
 import type { ProductT } from '../types';
+import axios from 'axios';
 
 interface HomeI {
     products: ProductT[];
@@ -25,7 +26,7 @@ const Home: NextPage<HomeI> = ({ products }) => {
 };
 
 export const getStaticProps: GetServerSideProps = async () => {
-    const products = await fetch('https://my-ecommerce-api-modern.herokuapp.com/items').then((res) => res.json());
+    const { items: products } = await axios.get('https://api-dun-phi.vercel.app/').then((res) => res.data);
 
     return {
         props: {

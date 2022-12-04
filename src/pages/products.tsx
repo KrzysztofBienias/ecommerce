@@ -2,6 +2,7 @@ import type { GetServerSideProps, NextPage } from 'next';
 import Footer from '../components/footer';
 import Header from '../components/header';
 import ProductFeed from '../components/productFeed';
+import axios from 'axios';
 import type { ProductT } from '../types';
 
 interface ProductsI {
@@ -19,7 +20,7 @@ const Products: NextPage<ProductsI> = ({ products }) => {
 };
 
 export const getStaticProps: GetServerSideProps = async () => {
-    const products = await fetch('https://my-ecommerce-api-modern.herokuapp.com/items').then((res) => res.json());
+    const { items: products } = await axios.get('https://api-dun-phi.vercel.app/').then((res) => res.data);
 
     return {
         props: {
