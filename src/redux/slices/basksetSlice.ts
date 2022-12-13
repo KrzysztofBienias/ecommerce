@@ -1,14 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../store';
+import { ProductT } from '../../types';
 
 interface BasketType {
-    items: {
-        id: number;
-        title: string;
-        price: number;
-        category: string;
-        image: string;
-    }[];
+    items: ProductT[];
 }
 
 const initialState = { items: [] } as BasketType;
