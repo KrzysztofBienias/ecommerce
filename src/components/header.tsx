@@ -1,50 +1,25 @@
 import React from 'react';
-import { useRouter } from 'next/router';
-import { signIn, signOut, useSession } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
 import { useSelector } from 'react-redux';
 import { selectItems } from '../redux/slices/basksetSlice';
+import Link from './link';
 
 const Header = () => {
-    const router = useRouter();
     const { data: session } = useSession();
     const items = useSelector(selectItems);
 
     return (
         <header>
-            <div className="flex justify-between px-5 py-6 text-sm min-[440px]:text-base sm:px-14 2xl:px-0">
-                <p
-                    onClick={() => router.push('/')}
-                    className="text-i cursor-pointer px-2 py-2 hover:italic sm:px-4 sm:py-4 lg:px-6 lg:py-6"
-                >
-                    Home
-                </p>
+            <nav className="flex justify-between px-5 py-6 text-sm min-[440px]:text-base sm:px-14 2xl:px-0">
+                <Link route="/">Home</Link>
                 <div className="text-center min-[360px]:flex ">
-                    <p
-                        className="cursor-pointer px-2 py-2 hover:italic sm:px-4 sm:py-4 lg:px-6 lg:py-6"
-                        onClick={() => (session ? signOut() : signIn())}
-                    >
-                        {session ? 'Sign out' : 'Sign in'}
-                    </p>
-                    <p
-                        onClick={() => router.push('/profile')}
-                        className="cursor-pointer px-2 py-2 hover:italic sm:px-4 sm:py-4 lg:px-6 lg:py-6"
-                    >
-                        Profile
-                    </p>
-                    <p
-                        onClick={() => router.push('/products')}
-                        className="cursor-pointer px-2 py-2 hover:italic sm:px-4 sm:py-4 lg:px-6 lg:py-6"
-                    >
-                        Products
-                    </p>
+                    <Link isSignIn={session ? true : false}>{session ? 'Sign out' : 'Sign in'}</Link>
+                    <Link route="/profile">Profile</Link>
+                    <Link route="/products">Products</Link>
                 </div>
-                <p
-                    onClick={() => router.push('/cart')}
-                    className="cursor-pointer px-2 py-2 hover:italic sm:px-4 sm:py-4 lg:px-6 lg:py-6"
-                >
-                    Cart({items.length})
-                </p>
-            </div>
+                <Link route="/cart">{`Cart(${items.length})`}</Link>
+            </nav>
+
             <div className="mx-auto my-5 max-w-fit">
                 <div className="border-y border-gray-300">
                     <h2 className="py-4 text-center text-5xl font-bold min-[440px]:text-7xl min-[600px]:text-8xl md:text-9xl xl:text-[200px]">

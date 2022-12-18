@@ -1,7 +1,8 @@
 import type { NextPage } from 'next';
+import { useRouter } from 'next/router';
 import Footer from '../components/footer';
 import Header from '../components/header';
-import { useRouter } from 'next/router';
+import Link from './../components/link';
 
 const Success: NextPage = () => {
     const router = useRouter();
@@ -18,12 +19,7 @@ const Success: NextPage = () => {
                     Thank you for shopping with us. We&apos;ll send a confirmation once your item has shipped, if you would like
                     to check the status of your order(s) please press the link below.
                 </p>
-                <div
-                    className="cursor-pointer px-2 py-2 hover:italic sm:px-4 sm:py-4 lg:px-6 lg:py-6"
-                    onClick={() => router.push('/profile')}
-                >
-                    Profile
-                </div>
+                <Link route="/profile">Profile</Link>
             </div>
 
             <Footer />
