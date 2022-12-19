@@ -43,11 +43,15 @@ const Cart = () => {
                         <p>(max 5 items)</p>
                         <button
                             role="link"
-                            disabled={!session}
+                            disabled={!session || items.length === 0}
                             onClick={createCheckoutSession}
-                            className={`my-2 py-4 hover:italic ${!session ? 'cursor-not-allowed' : null}`}
+                            className={`group my-2 py-4 hover:font-bold ${
+                                !session || items.length === 0 ? 'cursor-not-allowed' : null
+                            }`}
                         >
-                            {!session ? 'Sign in to checkout' : 'Proceed to checkout'}
+                            <span className="relative inline-block overflow-hidden before:absolute before:bottom-0 before:left-0 before:h-[2px] before:w-full before:origin-[100%_50%] before:scale-x-0 before:bg-gray-700 before:transition-transform before:duration-300 before:ease-[cubic-bezier(.76,0,.24,1)] focus:before:origin-[0%_50%] focus:before:scale-x-100  group-hover:before:origin-[0%_50%] group-hover:before:scale-x-100">
+                                {!session ? 'Sign in to checkout' : 'Proceed to checkout'}
+                            </span>
                         </button>
                     </div>
                 </div>
