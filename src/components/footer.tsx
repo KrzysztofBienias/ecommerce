@@ -57,14 +57,27 @@ const ParallaxText = ({ children, baseVelocity }: ParallaxProps) => {
     );
 };
 
+const transitionVariant = {
+    hidden: { opacity: 0 },
+    show: { opacity: 1 },
+};
+
 const Footer = () => {
     return (
-        <footer className="mt-20 md:mt-32">
-            <p className="text-right md:pr-2 2xl:pr-0">Created only for educational purpose</p>
-            <div className="flex flex-nowrap overflow-hidden whitespace-nowrap border-y border-gray-300 text-[10.3vw] font-bold tracking-tighter  2xl:text-[161px]">
+        <motion.footer transition={{ staggerChildren: 0.2, delay: 0.4 }} className="mt-20 md:mt-32">
+            <motion.p variants={transitionVariant} initial="hidden" whileInView="show" viewport={{ once: true }} className="text-right md:pr-2 2xl:pr-0">
+                Created only for educational purpose
+            </motion.p>
+            <motion.div
+                variants={transitionVariant}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true }}
+                className="flex flex-nowrap overflow-hidden whitespace-nowrap border-y border-gray-300 text-[10.3vw] font-bold tracking-tighter  2xl:text-[161px]"
+            >
                 <ParallaxText baseVelocity={3}>Nelson de Araújo</ParallaxText>
-            </div>
-        </footer>
+            </motion.div>
+        </motion.footer>
     );
 };
 
