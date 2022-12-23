@@ -7,16 +7,39 @@ import Order from '../components/order';
 import db from '../../firebase';
 import moment from 'moment';
 import type { OrderT } from '../types';
+import { motion } from 'framer-motion';
 
 interface ProfileI {
     orders: OrderT[];
 }
 
+const infoTextVariant = {
+    hidden: { opacity: 0, y: 50 },
+    show: { opacity: 1, y: 0, transition: { delay: 0.8, duration: 0.4 } },
+};
+
 const InfoText = ({ children }: { children: React.ReactNode }) => (
     <div className="p-10 text-center">
-        <p className="text-sm font-bold sm:text-lg md:text-3xl 2xl:pb-4 2xl:text-5xl">{children}</p>
+        <motion.p
+            variants={infoTextVariant}
+            initial="hidden"
+            animate="show"
+            className="text-sm font-bold sm:text-lg md:text-3xl 2xl:pb-4 2xl:text-5xl"
+        >
+            {children}
+        </motion.p>
     </div>
 );
+
+const orderWrapperVariant = {
+    hidden: { opacity: 0 },
+    show: { opacity: 1, transition: { delay: 1 } },
+};
+
+const profileWrapperVariant = {
+    hidden: { opacity: 0, y: 50 },
+    show: { opacity: 1, y: 0, transition: { delay: 0.8 } },
+};
 
 const Profile: NextPage<ProfileI> = ({ orders }) => {
     const { data: session } = useSession();
@@ -30,12 +53,19 @@ const Profile: NextPage<ProfileI> = ({ orders }) => {
                     <InfoText>You are supposed to sign in first</InfoText>
                 ) : (
                     <div className="flex flex-col px-6 lg:flex-row lg:justify-center lg:px-10">
-                        <div id="profile" className="pb-5 text-center lg:pr-10">
+                        <motion.div
+                            variants={profileWrapperVariant}
+                            initial="hidden"
+                            animate="show"
+                            id="profile"
+                            className="pb-5 text-center lg:pr-10"
+                        >
                             <Image src={session.user?.image!} alt="" width={150} height={150} className="rounded-full" />
                             <p>{session.user?.name}</p>
                             <p>{session.user?.email}</p>
-                        </div>
-                        <div className="max-w-5xl flex-1">
+                        </motion.div>
+
+                        <motion.div variants={orderWrapperVariant} initial="hidden" animate="show" className="max-w-5xl flex-1">
                             {orders ? (
                                 orders.map((order, index) => (
                                     <Order
@@ -49,7 +79,7 @@ const Profile: NextPage<ProfileI> = ({ orders }) => {
                             ) : (
                                 <InfoText>Loading...</InfoText>
                             )}
-                        </div>
+                        </motion.div>
                     </div>
                 )}
             </main>
