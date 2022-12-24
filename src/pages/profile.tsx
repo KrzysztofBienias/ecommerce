@@ -49,9 +49,8 @@ const Profile: NextPage<ProfileI> = ({ orders }) => {
             <Header />
 
             <main className="flex-1">
-                {!session ? (
-                    <InfoText>You are supposed to sign in first</InfoText>
-                ) : (
+                {!session && <InfoText>You are supposed to sign in first</InfoText>}
+                {session && (
                     <div className="flex flex-col px-6 lg:flex-row lg:justify-center lg:px-10">
                         <motion.div
                             variants={profileWrapperVariant}
