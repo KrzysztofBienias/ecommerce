@@ -2,10 +2,16 @@ import Image from 'next/image';
 import { useDispatch } from 'react-redux';
 import { addToBasket } from '../redux/slices/basksetSlice';
 import type { ProductT } from '../types';
+import { motion } from 'framer-motion';
 
 interface ProductI {
     product: ProductT;
 }
+
+const transitionVariant = {
+    hidden: { opacity: 0, y: 100 },
+    show: { opacity: 1, y: 0 },
+};
 
 const Product = ({ product }: ProductI) => {
     const dispatch = useDispatch();
@@ -15,8 +21,8 @@ const Product = ({ product }: ProductI) => {
     };
 
     return (
-        <div className="pb-6 md:pb-0" key={product.id}>
-            <div onClick={addProductToBasket} className="cursor-pointer overflow-hidden">
+        <motion.div className="pb-6 md:pb-0" key={product.id}>
+            <motion.div variants={transitionVariant} onClick={addProductToBasket} className="cursor-pointer overflow-hidden">
                 <Image
                     className="transition duration-150 ease-out hover:scale-125"
                     src={product.image}
@@ -24,12 +30,12 @@ const Product = ({ product }: ProductI) => {
                     width={800}
                     height={800}
                 />
-            </div>
-            <div className="flex justify-between px-2">
+            </motion.div>
+            <motion.div variants={transitionVariant} className="flex justify-between px-2">
                 <p>{product.title}</p>
                 <p className="font-bold">${product.price}</p>
-            </div>
-        </div>
+            </motion.div>
+        </motion.div>
     );
 };
 
