@@ -25,7 +25,7 @@ const Link = ({ children, route, isSignIn, delay }: LinkProps) => {
     if (delay) Object.assign(linkVariant.show, { transition: { delay } });
 
     return (
-        <motion.a
+        <motion.button
             className="group cursor-pointer p-2 hover:font-bold sm:p-4 lg:p-6"
             onClick={onClickHandler}
             variants={linkVariant}
@@ -33,7 +33,7 @@ const Link = ({ children, route, isSignIn, delay }: LinkProps) => {
             <span className="relative inline-block overflow-hidden before:absolute before:bottom-0 before:left-0 before:h-[2px] before:w-full before:origin-[100%_50%] before:scale-x-0 before:bg-gray-700 before:transition-transform before:duration-300 before:ease-[cubic-bezier(.76,0,.24,1)] focus:before:origin-[0%_50%] focus:before:scale-x-100  group-hover:before:origin-[0%_50%] group-hover:before:scale-x-100">
                 {children}
             </span>
-        </motion.a>
+        </motion.button>
     );
 };
 
