@@ -39,7 +39,7 @@ const Header = () => {
             >
                 <Link route="/">Home</Link>
                 <motion.div variants={navVariant} className="text-center min-[360px]:flex">
-                    <Link isSignIn={session ? true : false}>{session ? 'Sign out' : 'Sign in'}</Link>
+                    <Link isSignIn={!!session}>{session ? 'Sign out' : 'Sign in'}</Link>
                     <Link route="/profile">Profile</Link>
                     <Link route="/products">Products</Link>
                 </motion.div>
