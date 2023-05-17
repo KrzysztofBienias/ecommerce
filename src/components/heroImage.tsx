@@ -17,7 +17,7 @@ const HeroImage = () => {
                     src={MobileImage}
                     height={1423}
                     width={1917}
-                    objectFit="contain"
+                    style={{objectFit: "contain"}}
                     alt="Mobile hero image of the collection"
                     priority
                 />
@@ -27,7 +27,7 @@ const HeroImage = () => {
                     src={DesktopImage}
                     height={2400}
                     width={1920}
-                    objectFit="contain"
+                    style={{objectFit: "contain"}}
                     alt="Desktop hero image of the collection"
                     priority
                 />
