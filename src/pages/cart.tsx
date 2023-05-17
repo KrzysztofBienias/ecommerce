@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import CheckoutProduct from '../components/checkoutProduct';
 import Footer from '../components/footer';
 import Header from '../components/header';
-import { selectItems, selectTotal } from '../redux/slices/basksetSlice';
+import { selectItems, selectTotal } from '../store/slices/basksetSlice';
 import { useSession } from 'next-auth/react';
 import { loadStripe } from '@stripe/stripe-js';
 import axios from 'axios';

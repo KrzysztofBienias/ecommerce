@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { useDispatch } from 'react-redux';
-import { addToBasket } from '../redux/slices/basksetSlice';
+import { addToBasket } from '../store/slices/basksetSlice';
 import type { ProductT } from '../types';
 import { motion } from 'framer-motion';
 

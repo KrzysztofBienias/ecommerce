@@ -3,7 +3,7 @@ import type { AppProps } from 'next/app';
 import { SessionProvider } from 'next-auth/react';
 import { Session } from 'next-auth';
 import { Provider } from 'react-redux';
-import store from '../redux/store';
+import store from '../store/store';
 import Head from 'next/head';
 
 function MyApp({ Component, pageProps }: AppProps<{ session: Session }>) {
