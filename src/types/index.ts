@@ -14,3 +14,7 @@ export type OrderT = {
     items: any;
     timestamp: number;
 };
+
+export type GroupedProducts = {
+    [category: string]: ProductT[];
+};
