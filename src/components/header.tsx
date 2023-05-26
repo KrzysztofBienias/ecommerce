@@ -1,7 +1,8 @@
 import React from 'react';
 import { useSession } from 'next-auth/react';
 import { useSelector } from 'react-redux';
-import { selectItems } from '../store/slices/basksetSlice';
+import { motion } from 'framer-motion';
+import { selectItems } from '../store/slices/basketSlice';
 import Link from './link';
 import { motion } from 'framer-motion';
 

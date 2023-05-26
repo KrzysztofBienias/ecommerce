@@ -2,7 +2,7 @@
 
 import { configureStore } from '@reduxjs/toolkit';
 import { productsApi } from './api/productsApi';
-import basketReducer from './slices/basksetSlice';
+import basketReducer from './slices/basketSlice';
 
 const store = configureStore({
     reducer: {

@@ -1,7 +1,8 @@
 import React from 'react';
 import Image from 'next/image';
 import { useDispatch } from 'react-redux';
-import { addToBasket, removeFromBasket } from '../store/slices/basksetSlice';
+import { motion } from 'framer-motion';
+import { addToBasket, removeFromBasket } from '../store/slices/basketSlice';
 import type { ProductT } from '../types';
 import { motion } from 'framer-motion';
 
