@@ -1,8 +1,7 @@
+import { motion } from 'framer-motion';
 import Image from 'next/image';
-import React from 'react';
 import Content1 from '../images/content1.jpg';
 import Content2 from '../images/content2.jpg';
-import { motion } from 'framer-motion';
 
 const textVariants = {
     hidden: { y: 150, opacity: 0 },
@@ -39,8 +38,8 @@ const HomeContent = () => {
                 viewport={{ once: true }}
                 className="grid grid-cols-2 gap-2 lg:gap-4"
             >
-                <Image src={Content1} height={2400} width={1920} style={{objectFit: "contain"}} alt="Image of the collection" />
-                <Image src={Content2} height={1750} width={1400} style={{objectFit: "contain"}} alt="Image of the collection" />
+                <Image src={Content1} height={2400} width={1920} style={{ objectFit: 'contain' }} alt="Image of the collection" />
+                <Image src={Content2} height={1750} width={1400} style={{ objectFit: 'contain' }} alt="Image of the collection" />
             </motion.div>
             <div className="py-20 pr-2 text-right md:pr-4 2xl:pr-0">
                 <motion.h4

@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useRef } from 'react';
 import { motion, useScroll, useSpring, useTransform, useMotionValue, useVelocity, useAnimationFrame } from 'framer-motion';
 import { wrap } from '@motionone/utils';
@@ -65,7 +67,13 @@ const transitionVariant = {
 const Footer = () => {
     return (
         <motion.footer transition={{ staggerChildren: 0.2, delay: 0.4 }} className="mt-20 md:mt-32">
-            <motion.p variants={transitionVariant} initial="hidden" whileInView="show" viewport={{ once: true }} className="text-right md:pr-2 2xl:pr-0">
+            <motion.p
+                variants={transitionVariant}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true }}
+                className="text-right md:pr-2 2xl:pr-0"
+            >
                 Created only for educational purpose
             </motion.p>
             <motion.div

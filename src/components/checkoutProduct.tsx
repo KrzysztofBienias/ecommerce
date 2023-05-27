@@ -1,10 +1,8 @@
-import React from 'react';
 import Image from 'next/image';
 import { useDispatch } from 'react-redux';
 import { motion } from 'framer-motion';
 import { addToBasket, removeFromBasket } from '../store/slices/basketSlice';
 import type { ProductT } from '../types';
-import { motion } from 'framer-motion';
 
 interface CheckoutProductI {
     item: ProductT;
