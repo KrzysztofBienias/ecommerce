@@ -1,7 +1,9 @@
-import type { NextPage } from 'next';
-import Footer from '../components/footer';
-import Header from '../components/header';
-import Link from './../components/link';
+'use client';
+
+import Header from '../../components/header';
+import Link from '../../components/link';
+import Footer from '../../components/footer';
+
 import { motion } from 'framer-motion';
 
 const wrapperVariant = {
@@ -9,9 +11,9 @@ const wrapperVariant = {
     show: { opacity: 1, y: 0, transition: { delay: 0.8 } },
 };
 
-const Success: NextPage = () => {
+const Page = () => {
     return (
-        <div className="mx-auto flex min-h-screen max-w-screen-2xl flex-col font-montserrat">
+        <div className="mx-auto flex min-h-screen max-w-screen-2xl flex-col">
             <Header />
 
             <motion.div
@@ -35,4 +37,4 @@ const Success: NextPage = () => {
     );
 };
 
-export default Success;
+export default Page;
