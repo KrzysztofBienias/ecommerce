@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 interface OrderI {
     amount: number;
     images: string[];
-    items: any;
+    items: number;
     timestamp: number;
 }
 
@@ -59,7 +59,7 @@ const Order: React.FC<OrderI> = ({ amount, images, items, timestamp }) => {
                     variants={orderInfoItemVariant}
                     className="flex-1 self-start whitespace-nowrap text-right text-sm sm:text-xl"
                 >
-                    {items.length} items
+                    {items} items
                 </motion.p>{' '}
             </motion.div>
 
