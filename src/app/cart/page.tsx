@@ -1,16 +1,29 @@
+'use client';
+
+import Header from '../../components/header';
+import CheckoutProduct from '../../components/checkoutProduct';
+import Footer from '../../components/footer';
+import { selectItems, selectTotal } from '../../store/slices/basketSlice';
+
+import { motion } from 'framer-motion';
 import { useSelector } from 'react-redux';
-import CheckoutProduct from '../components/checkoutProduct';
-import Footer from '../components/footer';
-import Header from '../components/header';
-import { selectItems, selectTotal } from '../store/slices/basksetSlice';
 import { useSession } from 'next-auth/react';
 import { loadStripe } from '@stripe/stripe-js';
 import axios from 'axios';
-import { motion } from 'framer-motion';
+
+const checkoutProductVariant = {
+    hidden: { opacity: 0 },
+    show: { opacity: 1, transition: { when: 'beforeChildren', staggerChildren: 0.2, duration: 0.5, delay: 0.2 } },
+};
+
+const infoVariant = {
+    hidden: { y: 50, opacity: 0 },
+    show: { y: 0, opacity: 1, transition: { duration: 0.4, delay: 1 } },
+};
 
 const stripePromise = loadStripe(process.env.stripe_public_key as string);
 
-const Cart = () => {
+const Page = () => {
     const items = useSelector(selectItems);
     const total = useSelector(selectTotal);
     const { data: session } = useSession();
@@ -21,23 +34,14 @@ const Cart = () => {
             items,
             email: session && session?.user?.email,
         });
+        console.log(checkoutSession);
         const result = await stripe?.redirectToCheckout({ sessionId: checkoutSession.data.id });
 
         if (result?.error) alert(result.error.message);
     };
 
-    const checkoutProductVariant = {
-        hidden: { opacity: 0 },
-        show: { opacity: 1, transition: { when: 'beforeChildren', staggerChildren: 0.2, duration: 0.5, delay: 0.2 } },
-    };
-
-    const infoVariant = {
-        hidden: { y: 50, opacity: 0 },
-        show: { y: 0, opacity: 1, transition: { duration: 0.4, delay: 1 } },
-    };
-
     return (
-        <div className="mx-auto flex min-h-screen max-w-screen-2xl flex-col font-montserrat">
+        <div className="mx-auto flex min-h-screen max-w-screen-2xl flex-col">
             <Header />
 
             <div className="flex w-full max-w-6xl flex-1 flex-col justify-between sm:px-10 md:mx-auto md:mt-14 md:flex-row xl:mt-24 xl:px-0">
@@ -97,4 +101,4 @@ const Cart = () => {
     );
 };
 
-export default Cart;
+export default Page;
