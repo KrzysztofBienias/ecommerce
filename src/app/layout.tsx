@@ -12,7 +12,11 @@ export const metadata = {
     description: 'Just arrived our latest collection of futuristic furniture',
 };
 
-const RootLayout = ({ children }: { children: React.ReactNode }) => {
+interface Props {
+    children: React.ReactNode;
+}
+
+const RootLayout: React.FC<Props> = ({ children }) => {
     return (
         <html lang="en">
             <body className={montserrat.className}>
