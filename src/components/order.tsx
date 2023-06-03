@@ -60,7 +60,7 @@ const Order: React.FC<OrderI> = ({ amount, images, items, timestamp }) => {
                     className="flex-1 self-start whitespace-nowrap text-right text-sm sm:text-xl"
                 >
                     {items} items
-                </motion.p>{' '}
+                </motion.p>
             </motion.div>
 
             <motion.div
