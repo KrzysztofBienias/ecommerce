@@ -25,7 +25,7 @@ const CheckoutProduct: React.FC<CheckoutProductI> = ({ item }) => {
     };
 
     return (
-        <motion.div variants={wrapperVariant} className="my-4 flex">
+        <motion.div layout exit={{ scale: 0.8, x: 105, opacity: 0 }} variants={wrapperVariant} className="my-4 flex">
             <div className="h-[100px] w-[100px] md:h-[150px] md:w-[150px]">
                 <Image src={item.image} width={150} height={150} alt="" />
             </div>

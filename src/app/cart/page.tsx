@@ -3,7 +3,7 @@
 import CheckoutProduct from '../../components/checkoutProduct';
 import { selectItems, selectTotal } from '../../store/slices/basketSlice';
 
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { useSelector } from 'react-redux';
 import { useSession } from 'next-auth/react';
 import { loadStripe } from '@stripe/stripe-js';
@@ -47,9 +47,11 @@ const Page = () => {
                     animate="show"
                     className="order-2 pl-2 md:order-1 md:w-2/3 md:max-w-3xl md:pl-0"
                 >
-                    {items.map((item, index) => (
-                        <CheckoutProduct item={item} key={index} />
-                    ))}
+                    <AnimatePresence mode="popLayout">
+                        {items.map((item, index) => (
+                            <CheckoutProduct item={item} key={index} />
+                        ))}
+                    </AnimatePresence>
                 </motion.div>
 
                 <div className="order-1 md:order-2">
