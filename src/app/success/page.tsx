@@ -1,9 +1,6 @@
 'use client';
 
-import Header from '../../components/header';
 import Link from '../../components/link';
-import Footer from '../../components/footer';
-
 import { motion } from 'framer-motion';
 
 const wrapperVariant = {
@@ -13,9 +10,7 @@ const wrapperVariant = {
 
 const Page = () => {
     return (
-        <div className="mx-auto flex min-h-screen max-w-screen-2xl flex-col">
-            <Header />
-
+        <main className="flex flex-1 items-center justify-center">
             <motion.div
                 variants={wrapperVariant}
                 initial="hidden"
@@ -31,9 +26,7 @@ const Page = () => {
                 </p>
                 <Link route="/profile">Profile</Link>
             </motion.div>
-
-            <Footer />
-        </div>
+        </main>
     );
 };
 

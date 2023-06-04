@@ -1,3 +1,5 @@
+'use client';
+
 import { useSession, signIn, signOut } from 'next-auth/react';
 import { useSelector } from 'react-redux';
 import { motion } from 'framer-motion';

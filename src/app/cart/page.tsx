@@ -1,8 +1,6 @@
 'use client';
 
-import Header from '../../components/header';
 import CheckoutProduct from '../../components/checkoutProduct';
-import Footer from '../../components/footer';
 import { selectItems, selectTotal } from '../../store/slices/basketSlice';
 
 import { motion } from 'framer-motion';
@@ -41,9 +39,7 @@ const Page = () => {
     };
 
     return (
-        <div className="mx-auto flex min-h-screen max-w-screen-2xl flex-col">
-            <Header />
-
+        <main>
             <div className="flex w-full max-w-6xl flex-1 flex-col justify-between sm:px-10 md:mx-auto md:mt-14 md:flex-row xl:mt-24 xl:px-0">
                 <motion.div
                     variants={checkoutProductVariant}
@@ -95,9 +91,7 @@ const Page = () => {
                     </motion.div>
                 </div>
             </div>
-
-            <Footer />
-        </div>
+        </main>
     );
 };
 

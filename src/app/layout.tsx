@@ -1,4 +1,6 @@
 import { Montserrat } from 'next/font/google';
+import Header from '../components/header';
+import Footer from '../components/footer';
 import Providers from '../providers/providers';
 import '../styles/globals.css';
 
@@ -20,7 +22,13 @@ const RootLayout: React.FC<Props> = ({ children }) => {
     return (
         <html lang="en">
             <body className={montserrat.className}>
-                <Providers>{children}</Providers>
+                <Providers>
+                    <div className="mx-auto flex min-h-screen max-w-screen-2xl flex-col">
+                        <Header />
+                        {children}
+                        <Footer />
+                    </div>
+                </Providers>
             </body>
         </html>
     );

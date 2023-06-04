@@ -1,9 +1,7 @@
 'use client';
 
-import Header from '../../components/header';
 import Order from '../../components/order';
 import InfoText from '../../components/infoText';
-import Footer from '../../components/footer';
 
 import { useEffect, useState } from 'react';
 import { Session } from 'next-auth';
@@ -52,53 +50,54 @@ const Page = () => {
         }
     }, [session]);
 
-    return (
-        <div className="mx-auto flex min-h-screen max-w-screen-2xl flex-col">
-            <Header />
-
-            <main className="flex-1">
-                {!session && <InfoText>You are supposed to sign in first</InfoText>}
-                {session && (
-                    <div className="flex flex-col px-6 lg:flex-row lg:justify-center lg:px-10">
-                        <motion.div
-                            variants={profileWrapperVariant}
-                            initial="hidden"
-                            animate="show"
-                            id="profile"
-                            className="pb-5 text-center lg:pr-10"
-                        >
-                            <Image
-                                src={session.user?.image!}
-                                alt="User image"
-                                width={150}
-                                height={150}
-                                className="mx-auto rounded-full"
-                            />
-                            <p>{session.user?.name}</p>
-                            <p>{session.user?.email}</p>
-                        </motion.div>
-
-                        <motion.div variants={orderWrapperVariant} initial="hidden" animate="show" className="max-w-5xl flex-1">
-                            {orders ? (
-                                orders.map((order, index) => (
-                                    <Order
-                                        key={index}
-                                        amount={order.amount}
-                                        images={order.images}
-                                        items={order.images.length}
-                                        timestamp={order.timestamp}
-                                    />
-                                ))
-                            ) : (
-                                <InfoText>Loading...</InfoText>
-                            )}
-                        </motion.div>
-                    </div>
-                )}
+    if (!session) {
+        return (
+            <main className="flex flex-1 items-center justify-center">
+                <InfoText>You are supposed to sign in first</InfoText>
             </main>
+        );
+    }
 
-            <Footer />
-        </div>
+    return (
+        <main className="flex-1">
+            {session && (
+                <div className="flex flex-col px-6 lg:flex-row lg:justify-center lg:px-10">
+                    <motion.div
+                        variants={profileWrapperVariant}
+                        initial="hidden"
+                        animate="show"
+                        id="profile"
+                        className="pb-5 text-center lg:pr-10"
+                    >
+                        <Image
+                            src={session.user?.image!}
+                            alt="User image"
+                            width={150}
+                            height={150}
+                            className="mx-auto rounded-full"
+                        />
+                        <p>{session.user?.name}</p>
+                        <p>{session.user?.email}</p>
+                    </motion.div>
+
+                    <motion.div variants={orderWrapperVariant} initial="hidden" animate="show" className="max-w-5xl flex-1">
+                        {orders ? (
+                            orders.map((order, index) => (
+                                <Order
+                                    key={index}
+                                    amount={order.amount}
+                                    images={order.images}
+                                    items={order.images.length}
+                                    timestamp={order.timestamp}
+                                />
+                            ))
+                        ) : (
+                            <InfoText>Loading...</InfoText>
+                        )}
+                    </motion.div>
+                </div>
+            )}
+        </main>
     );
 };
 
