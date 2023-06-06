@@ -61,7 +61,7 @@ const ParallaxText = ({ children, baseVelocity }: ParallaxProps) => {
 
 const transitionVariant = {
     hidden: { opacity: 0 },
-    show: { opacity: 1 },
+    show: { opacity: 1, transition: { delay: 0.3 } },
 };
 
 const Footer = () => {

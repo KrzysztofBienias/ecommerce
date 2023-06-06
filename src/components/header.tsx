@@ -35,6 +35,8 @@ const Header = () => {
     const { data: session } = useSession();
     const items = useSelector(selectItems);
 
+    const signHandler = () => (session?.user ? signOut() : signIn());
+
     return (
         <header>
             <motion.nav
@@ -45,27 +47,15 @@ const Header = () => {
             >
                 <Link route="/">Home</Link>
                 <motion.div variants={navVariant} className="text-center min-[360px]:flex">
-                    {session?.user ? (
-                        <motion.button
-                            onClick={() => signOut()}
-                            variants={linkVariant}
-                            className="group cursor-pointer p-2 hover:font-bold sm:p-4 lg:p-6"
-                        >
-                            <span className="relative inline-block overflow-hidden before:absolute before:bottom-0 before:left-0 before:h-[2px] before:w-full before:origin-[100%_50%] before:scale-x-0 before:bg-gray-700 before:transition-transform before:duration-300 before:ease-[cubic-bezier(.76,0,.24,1)] focus:before:origin-[0%_50%] focus:before:scale-x-100  group-hover:before:origin-[0%_50%] group-hover:before:scale-x-100">
-                                Sign out
-                            </span>
-                        </motion.button>
-                    ) : (
-                        <motion.button
-                            onClick={() => signIn()}
-                            variants={linkVariant}
-                            className="group cursor-pointer p-2 hover:font-bold sm:p-4 lg:p-6"
-                        >
-                            <span className="relative inline-block overflow-hidden before:absolute before:bottom-0 before:left-0 before:h-[2px] before:w-full before:origin-[100%_50%] before:scale-x-0 before:bg-gray-700 before:transition-transform before:duration-300 before:ease-[cubic-bezier(.76,0,.24,1)] focus:before:origin-[0%_50%] focus:before:scale-x-100  group-hover:before:origin-[0%_50%] group-hover:before:scale-x-100">
-                                Sign in
-                            </span>
-                        </motion.button>
-                    )}
+                    <motion.button
+                        onClick={signHandler}
+                        variants={linkVariant}
+                        className="group cursor-pointer p-2 hover:font-bold sm:p-4 lg:p-6"
+                    >
+                        <span className="relative inline-block overflow-hidden before:absolute before:bottom-0 before:left-0 before:h-[2px] before:w-full before:origin-[100%_50%] before:scale-x-0 before:bg-gray-700 before:transition-transform before:duration-300 before:ease-[cubic-bezier(.76,0,.24,1)] focus:before:origin-[0%_50%] focus:before:scale-x-100  group-hover:before:origin-[0%_50%] group-hover:before:scale-x-100">
+                            {session?.user ? 'Sign out' : 'Sign in'}
+                        </span>
+                    </motion.button>
                     <Link route="/profile">Profile</Link>
                     <Link route="/products">Products</Link>
                 </motion.div>

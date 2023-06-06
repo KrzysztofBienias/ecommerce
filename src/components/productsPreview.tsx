@@ -20,7 +20,7 @@ const ProductsPreview = () => {
             viewport={{ once: true }}
             className="grid grid-cols-1 xs:grid-cols-2 xs:grid-rows-2 xs:gap-2 md:grid-cols-4 md:grid-rows-none"
         >
-            {data && data.slice(0, 4).map((product) => <Product product={product} key={product.id} />)}
+            {!isLoading && data && data.slice(0, 4).map((product) => <Product product={product} key={product.id} />)}
         </motion.div>
     );
 };

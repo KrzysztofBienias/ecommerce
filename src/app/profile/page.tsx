@@ -59,7 +59,7 @@ const Page = () => {
     }
 
     return (
-        <main className="flex-1">
+        <main className="min-h-full flex-1">
             {session && (
                 <div className="flex flex-col px-6 lg:flex-row lg:justify-center lg:px-10">
                     <motion.div
