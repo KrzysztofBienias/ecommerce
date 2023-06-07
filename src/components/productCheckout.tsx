@@ -15,7 +15,7 @@ const wrapperVariant = {
     show: { y: 0, opacity: 1 },
 };
 
-const CheckoutProduct: React.FC<Props> = forwardRef(({ item }, ref) => {
+const ProductCheckout: React.FC<Props> = forwardRef(({ item }, ref) => {
     const dispatch = useDispatch();
 
     const addItemToBasket = () => {
@@ -51,5 +51,5 @@ const CheckoutProduct: React.FC<Props> = forwardRef(({ item }, ref) => {
     );
 });
 
-CheckoutProduct.displayName = 'CheckoutProduct';
-export default CheckoutProduct;
+ProductCheckout.displayName = 'CheckoutProduct';
+export default ProductCheckout;

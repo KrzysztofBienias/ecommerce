@@ -1,6 +1,6 @@
 'use client';
 
-import CheckoutProduct from '../../components/checkoutProduct';
+import ProductCheckout from '../../components/productCheckout';
 import { selectItems, selectTotal } from '../../store/slices/basketSlice';
 
 import { useRef } from 'react';
@@ -50,7 +50,7 @@ const Page = () => {
             >
                 <AnimatePresence mode="popLayout">
                     {items.map((item, index) => (
-                        <CheckoutProduct ref={checkoutProductRef} item={item} key={index} />
+                        <ProductCheckout ref={checkoutProductRef} item={item} key={index} />
                     ))}
                 </AnimatePresence>
             </motion.div>
