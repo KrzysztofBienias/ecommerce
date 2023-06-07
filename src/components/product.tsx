@@ -1,11 +1,11 @@
 import Image from 'next/image';
 import { useDispatch } from 'react-redux';
 import { addToBasket } from '../store/slices/basketSlice';
-import type { ProductT } from '../types';
+import { Product } from '../types';
 import { motion } from 'framer-motion';
 
-interface ProductI {
-    product: ProductT;
+interface Props {
+    product: Product;
 }
 
 const transitionVariant = {
@@ -13,7 +13,7 @@ const transitionVariant = {
     show: { opacity: 1, y: 0 },
 };
 
-const Product = ({ product }: ProductI) => {
+const Product: React.FC<Props> = ({ product }) => {
     const dispatch = useDispatch();
 
     const addProductToBasket = () => {

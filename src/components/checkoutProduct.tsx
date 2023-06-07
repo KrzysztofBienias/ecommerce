@@ -3,10 +3,11 @@ import Image from 'next/image';
 import { useDispatch } from 'react-redux';
 import { motion } from 'framer-motion';
 import { addToBasket, removeFromBasket } from '../store/slices/basketSlice';
-import type { ProductT } from '../types';
+import type { Product } from '../types';
 
-interface CheckoutProductI {
-    item: ProductT;
+interface Props {
+    item: Product;
+    ref?: Ref<HTMLDivElement>;
 }
 
 const wrapperVariant = {
@@ -14,7 +15,7 @@ const wrapperVariant = {
     show: { y: 0, opacity: 1 },
 };
 
-const CheckoutProduct: React.FC<CheckoutProductI> = forwardRef(({ item }, ref) => {
+const CheckoutProduct: React.FC<Props> = forwardRef(({ item }, ref) => {
     const dispatch = useDispatch();
 
     const addItemToBasket = () => {

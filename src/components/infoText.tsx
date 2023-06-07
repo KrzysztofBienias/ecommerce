@@ -1,11 +1,15 @@
 import { motion } from 'framer-motion';
 
+interface Props {
+    children: React.ReactNode;
+}
+
 const infoTextVariant = {
     hidden: { opacity: 0, y: 50 },
     show: { opacity: 1, y: 0, transition: { delay: 0.8, duration: 0.4 } },
 };
 
-const InfoText = ({ children }: { children: React.ReactNode }) => (
+const InfoText: React.FC<Props> = ({ children }) => (
     <div className="p-10 text-center">
         <motion.p
             variants={infoTextVariant}

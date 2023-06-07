@@ -9,7 +9,7 @@ interface ParallaxProps {
     baseVelocity: number;
 }
 
-const ParallaxText = ({ children, baseVelocity }: ParallaxProps) => {
+const ParallaxText: React.FC<ParallaxProps> = ({ children, baseVelocity }) => {
     const [isHover, setIsHover] = useState(false);
     const hoverHelper = () => setIsHover((state) => !state);
     const hoverCondition = isHover ? 1 : baseVelocity;

@@ -2,7 +2,7 @@ import Image from 'next/image';
 import moment from 'moment';
 import { motion } from 'framer-motion';
 
-interface OrderI {
+interface Props {
     amount: number;
     images: string[];
     items: number;
@@ -34,7 +34,7 @@ const imageVariant = {
     show: { y: 0 },
 };
 
-const Order: React.FC<OrderI> = ({ amount, images, items, timestamp }) => {
+const Order: React.FC<Props> = ({ amount, images, items, timestamp }) => {
     return (
         <motion.div
             variants={orderVariant}

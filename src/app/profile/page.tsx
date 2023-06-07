@@ -10,6 +10,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import moment from 'moment';
 import db from '../../../firebase';
+import type { Order as OrderT } from '../../types/index';
 
 const orderWrapperVariant = {
     hidden: { opacity: 0 },
@@ -40,7 +41,7 @@ async function fetchOrders(session: Session) {
 
 const Page = () => {
     const { data: session } = useSession();
-    const [orders, setOrders] = useState<any[]>([]);
+    const [orders, setOrders] = useState<OrderT[]>([]);
 
     useEffect(() => {
         if (session) {

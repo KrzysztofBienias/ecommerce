@@ -1,7 +1,7 @@
 'use client';
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { GroupedProducts, ProductT } from '../../types';
+import { GroupedProducts, Product } from '../../types';
 
 export const productsApi = createApi({
     reducerPath: 'productsApi',
@@ -9,7 +9,7 @@ export const productsApi = createApi({
         baseUrl: 'https://api-dun-phi.vercel.app/',
     }),
     endpoints: (builder) => ({
-        getAllProducts: builder.query<ProductT[], null>({
+        getAllProducts: builder.query<Product[], null>({
             query: () => 'products',
         }),
         getGroupedProducts: builder.query<GroupedProducts, null>({
