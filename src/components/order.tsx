@@ -59,7 +59,7 @@ const Order: React.FC<Props> = ({ amount, images, items, timestamp }) => {
                     variants={orderInfoItemVariant}
                     className="flex-1 self-start whitespace-nowrap text-right text-sm sm:text-xl"
                 >
-                    {items} items
+                    {items} {items > 1 ? 'items' : 'item'}
                 </motion.p>
             </motion.div>
 

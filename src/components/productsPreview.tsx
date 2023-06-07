@@ -10,7 +10,7 @@ const productsPreviewVariant = {
 };
 
 const ProductsPreview = () => {
-    const { isLoading, isFetching, data, error } = useGetAllProductsQuery(null);
+    const { isLoading, data } = useGetAllProductsQuery(null);
 
     return (
         <motion.div
