@@ -21,7 +21,7 @@ const CheckoutProduct: React.FC<CheckoutProductI> = ({ item }) => {
     };
 
     const removeItemFromBasket = () => {
-        dispatch(removeFromBasket(item.id));
+        dispatch(removeFromBasket(item.deleteId));
     };
 
     return (
