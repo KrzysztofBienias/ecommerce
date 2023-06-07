@@ -1,3 +1,4 @@
+import { forwardRef, Ref } from 'react';
 import Image from 'next/image';
 import { useDispatch } from 'react-redux';
 import { motion } from 'framer-motion';
@@ -13,7 +14,7 @@ const wrapperVariant = {
     show: { y: 0, opacity: 1 },
 };
 
-const CheckoutProduct: React.FC<CheckoutProductI> = ({ item }) => {
+const CheckoutProduct: React.FC<CheckoutProductI> = forwardRef(({ item }, ref) => {
     const dispatch = useDispatch();
 
     const addItemToBasket = () => {
@@ -25,7 +26,7 @@ const CheckoutProduct: React.FC<CheckoutProductI> = ({ item }) => {
     };
 
     return (
-        <motion.div layout exit={{ scale: 0.8, x: 105, opacity: 0 }} variants={wrapperVariant} className="my-4 flex">
+        <motion.div ref={ref} layout exit={{ scale: 0.8, opacity: 0 }} variants={wrapperVariant} className="my-4 flex">
             <div className="h-[100px] w-[100px] md:h-[150px] md:w-[150px]">
                 <Image src={item.image} width={150} height={150} alt="" />
             </div>
@@ -47,6 +48,7 @@ const CheckoutProduct: React.FC<CheckoutProductI> = ({ item }) => {
             </div>
         </motion.div>
     );
-};
+});
 
+CheckoutProduct.displayName = 'CheckoutProduct';
 export default CheckoutProduct;
