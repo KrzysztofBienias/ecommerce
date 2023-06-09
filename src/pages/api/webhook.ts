@@ -57,10 +57,10 @@ export default async (req: any, res: any) => {
         }
     }
 };
-
-export const config = {
-    api: {
-        bodyParser: false,
-        externalResolver: true,
-    },
-};
+//
+// export const config = {
+//     api: {
+//         bodyParser: false,
+//         externalResolver: true,
+//     },
+// };

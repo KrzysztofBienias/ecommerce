@@ -2,10 +2,10 @@ import Image from 'next/image';
 import moment from 'moment';
 import { motion } from 'framer-motion';
 
-interface OrderI {
+interface Props {
     amount: number;
     images: string[];
-    items: any;
+    items: number;
     timestamp: number;
 }
 
@@ -34,7 +34,7 @@ const imageVariant = {
     show: { y: 0 },
 };
 
-const Order: React.FC<OrderI> = ({ amount, images, items, timestamp }) => {
+const Order: React.FC<Props> = ({ amount, images, items, timestamp }) => {
     return (
         <motion.div
             variants={orderVariant}
@@ -59,8 +59,8 @@ const Order: React.FC<OrderI> = ({ amount, images, items, timestamp }) => {
                     variants={orderInfoItemVariant}
                     className="flex-1 self-start whitespace-nowrap text-right text-sm sm:text-xl"
                 >
-                    {items.length} items
-                </motion.p>{' '}
+                    {items} {items > 1 ? 'items' : 'item'}
+                </motion.p>
             </motion.div>
 
             <motion.div

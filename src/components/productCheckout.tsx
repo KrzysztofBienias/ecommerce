@@ -1,12 +1,13 @@
-import React from 'react';
+import { forwardRef, Ref } from 'react';
 import Image from 'next/image';
 import { useDispatch } from 'react-redux';
-import { addToBasket, removeFromBasket } from '../store/slices/basksetSlice';
-import type { ProductT } from '../types';
 import { motion } from 'framer-motion';
+import { addToBasket, removeFromBasket } from '../store/slices/basketSlice';
+import type { Product } from '../types';
 
-interface CheckoutProductI {
-    item: ProductT;
+interface Props {
+    item: Product;
+    ref?: Ref<HTMLDivElement>;
 }
 
 const wrapperVariant = {
@@ -14,7 +15,7 @@ const wrapperVariant = {
     show: { y: 0, opacity: 1 },
 };
 
-const CheckoutProduct: React.FC<CheckoutProductI> = ({ item }) => {
+const ProductCheckout: React.FC<Props> = forwardRef(({ item }, ref) => {
     const dispatch = useDispatch();
 
     const addItemToBasket = () => {
@@ -22,11 +23,11 @@ const CheckoutProduct: React.FC<CheckoutProductI> = ({ item }) => {
     };
 
     const removeItemFromBasket = () => {
-        dispatch(removeFromBasket(item.id));
+        dispatch(removeFromBasket(item.deleteId));
     };
 
     return (
-        <motion.div variants={wrapperVariant} className="my-4 flex">
+        <motion.div ref={ref} layout exit={{ scale: 0.8, opacity: 0 }} variants={wrapperVariant} className="my-4 flex">
             <div className="h-[100px] w-[100px] md:h-[150px] md:w-[150px]">
                 <Image src={item.image} width={150} height={150} alt="" />
             </div>
@@ -48,6 +49,7 @@ const CheckoutProduct: React.FC<CheckoutProductI> = ({ item }) => {
             </div>
         </motion.div>
     );
-};
+});
 
-export default CheckoutProduct;
+ProductCheckout.displayName = 'CheckoutProduct';
+export default ProductCheckout;

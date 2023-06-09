@@ -1,22 +1,24 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { v4 as uuidv4 } from 'uuid';
 import { RootState } from '../store';
-import { ProductT } from '../../types';
+import { Product } from '../../types';
 
-interface BasketType {
-    items: ProductT[];
+interface Basket {
+    items: Product[];
 }
 
-const initialState = { items: [] } as BasketType;
+const initialState = { items: [] } as Basket;
 
 const basketSlice = createSlice({
     name: 'basket',
     initialState,
     reducers: {
         addToBasket: (state, action) => {
-            state.items = [...state.items, action.payload];
+            const item = { ...action.payload, deleteId: uuidv4() };
+            state.items = [...state.items, item];
         },
         removeFromBasket: (state, action) => {
-            const index = state.items.findIndex((basketItem) => basketItem.id === action.payload);
+            const index = state.items.findIndex((basketItem) => basketItem.deleteId === action.payload);
             let newBasket = [...state.items];
 
             if (index >= 0) newBasket.splice(index, 1);

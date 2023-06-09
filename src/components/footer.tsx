@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useRef } from 'react';
 import { motion, useScroll, useSpring, useTransform, useMotionValue, useVelocity, useAnimationFrame } from 'framer-motion';
 import { wrap } from '@motionone/utils';
@@ -7,7 +9,7 @@ interface ParallaxProps {
     baseVelocity: number;
 }
 
-const ParallaxText = ({ children, baseVelocity }: ParallaxProps) => {
+const ParallaxText: React.FC<ParallaxProps> = ({ children, baseVelocity }) => {
     const [isHover, setIsHover] = useState(false);
     const hoverHelper = () => setIsHover((state) => !state);
     const hoverCondition = isHover ? 1 : baseVelocity;
@@ -59,13 +61,19 @@ const ParallaxText = ({ children, baseVelocity }: ParallaxProps) => {
 
 const transitionVariant = {
     hidden: { opacity: 0 },
-    show: { opacity: 1 },
+    show: { opacity: 1, transition: { delay: 0.3 } },
 };
 
 const Footer = () => {
     return (
         <motion.footer transition={{ staggerChildren: 0.2, delay: 0.4 }} className="mt-20 md:mt-32">
-            <motion.p variants={transitionVariant} initial="hidden" whileInView="show" viewport={{ once: true }} className="text-right md:pr-2 2xl:pr-0">
+            <motion.p
+                variants={transitionVariant}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true }}
+                className="text-right md:pr-2 2xl:pr-0"
+            >
                 Created only for educational purpose
             </motion.p>
             <motion.div
