@@ -16,14 +16,15 @@ yarn install</code></pre>
 
 <p>- Create a <code>.env.local</code> file and fill it with the necessary environment variables.</p>
 
-<pre><code>GOOGLE_ID=...
-GOOGLE_SECRET=...
+<pre><code>GOOGLE_ID=
+GOOGLE_SECRET=
 
-NEXTAUTH_SECRET=...
+HOST=
+NEXTAUTH_SECRET=
 
-STRIPE_PUBLIC_KEY=...
-STRIPE_SECRET_KEY=...
-STRIPE_SIGNING_SECRET=...
+STRIPE_PUBLIC_KEY=
+STRIPE_SECRET_KEY=
+STRIPE_SIGNING_SECRET=
 </code></pre>
 
 <p>- Run the development server:</p>
