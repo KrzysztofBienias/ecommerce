@@ -7,7 +7,7 @@
 <h2>⚙️ Installation</h2>
 
 <p>- Clone the repo</p>
-<pre><code>git clone https://github.com/KrzysztofBienias/the-abcde-ecommerce.git</code></pre>
+<pre><code>git clone https://github.com/bienku/the-abcde-ecommerce.git</code></pre>
 
 <p>- Install dependencies</p>
 <pre><code>npm install
